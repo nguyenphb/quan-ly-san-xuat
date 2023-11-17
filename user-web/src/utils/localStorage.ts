@@ -1,4 +1,3 @@
-import { ITokenInfo, RoleEnum } from '@/types/auth.type';
 import jwt_decode from 'jwt-decode';
 
 export const getAccessToken = () => {
@@ -12,10 +11,10 @@ export const getAccessToken = () => {
 export const getInfoFromAccessToken = () => {
   try {
     const token = getAccessToken();
-    const info = jwt_decode(token as string) as ITokenInfo;
-    if (info.is_admin) {
-      info.user_role.push(RoleEnum.CUSTOMER_ADMIN);
-    }
+    const info = jwt_decode.jwtDecode(token as string)
+    // if (info.is_admin) {
+    //   info.user_role.push(RoleEnum.CUSTOMER_ADMIN);
+    // }
     // return {
     //   ...info,
     //   // user_role:Object.keys(RoleEnum)
