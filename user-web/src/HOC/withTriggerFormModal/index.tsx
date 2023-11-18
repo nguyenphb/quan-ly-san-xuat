@@ -8,14 +8,14 @@ export interface TriggerFormModalProps<T = any> {
   modalProps?: T;
 }
 
-const withTriggerFormModal = ({
+const withTriggerFormModal = <T = any,>({
   defaultTrigger: DefaultTrigger,
   contentRender,
 }: {
   defaultTrigger: ({ changeOpen }: { changeOpen: (open: boolean) => void }) => React.ReactNode;
-  contentRender: FC<TriggerFormModalProps>;
+  contentRender: FC<TriggerFormModalProps<T>>;
 }) => {
-  const Component: FC<TriggerFormModalProps> = ({
+  const Component: FC<TriggerFormModalProps<T>> = ({
     open,
     trigger,
     onOpenChange,

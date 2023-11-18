@@ -1,24 +1,17 @@
 import LayoutMonitoring from '@/components/Layouts/LayoutMonitoring';
+import { StatisticSimpleProps } from '@/components/StatisticSimple';
+import { dataDemoMentosMonitoringBoard } from '@/pages/data-demo';
+import { ProCard } from '@ant-design/pro-components';
+import { Flex } from 'antd';
 import dayjs from 'dayjs';
 import { FC, ReactNode } from 'react';
 import CardGroup from './CardGroup';
-import { Col, Flex, Row } from 'antd';
 import StatisticsCard from './StatisticsCard';
-import { createEmptyArray } from '@/utils/array';
-import { StatisticSimpleProps } from '@/components/StatisticSimple';
-import { getRandomInt } from '@/utils/common';
-import { nanoid } from '@ant-design/pro-components';
 
 interface MentosMonitoringBoardComponentProps {
   children?: ReactNode;
 }
-type DataType = {
-  id: string;
-  label?: string;
-  target: number;
-  actual: number;
-  diff: number;
-};
+
 const MentosMonitoringBoardComponent: FC<MentosMonitoringBoardComponentProps> = ({ children }) => {
   const time = dayjs();
   const statistics: StatisticSimpleProps[] = [
@@ -49,17 +42,6 @@ const MentosMonitoringBoardComponent: FC<MentosMonitoringBoardComponentProps> = 
       },
     },
   ];
-  const semiData = createEmptyArray(5).map<DataType>((item) => {
-    const target = getRandomInt(100, 200);
-    const actual = getRandomInt(100, 200);
-    return {
-      id: nanoid(),
-      label: 'D-line',
-      target: target,
-      actual: actual,
-      diff: actual - target,
-    };
-  });
 
   return (
     <>
@@ -73,34 +55,29 @@ const MentosMonitoringBoardComponent: FC<MentosMonitoringBoardComponentProps> = 
         statistics={statistics}
       >
         <Flex vertical gap="middle">
-          <CardGroup title="Semi-finished">
-            <Row gutter={[16, 16]}>
-              {semiData.map((item, index) => (
-                <Col key={index} span={24} md={12} lg={8} xl={6}>
-                  <StatisticsCard
-                    title="D-line"
-                    statistics={{
-                      ...item,
+          {dataDemoMentosMonitoringBoard.map((zoneItem) => (
+            <CardGroup title={zoneItem.zone} key={zoneItem.zone}>
+              <ProCard wrap direction="row" gutter={[16, 16]}>
+                {zoneItem.data.map((item, index) => (
+                  <ProCard
+                    bodyStyle={{
+                      padding: 0,
                     }}
-                  />
-                </Col>
-              ))}
-            </Row>
-          </CardGroup>
-          <CardGroup title="Finished Goods">
-            <Row gutter={[16, 16]}>
-              {semiData.map((item, index) => (
-                <Col key={index} span={24} md={12} lg={8} xl={6}>
-                  <StatisticsCard
-                    title="D-line"
-                    statistics={{
-                      ...item,
+                    colSpan={{
+                      xs: 24,
+                      md: 12,
+                      lg: 8,
+                      xl: 6,
+                      xxl: '20%',
                     }}
-                  />
-                </Col>
-              ))}
-            </Row>
-          </CardGroup>
+                    key={index}
+                  >
+                    <StatisticsCard title={item.label} statistics={item} />
+                  </ProCard>
+                ))}
+              </ProCard>
+            </CardGroup>
+          ))}
         </Flex>
       </LayoutMonitoring>
     </>

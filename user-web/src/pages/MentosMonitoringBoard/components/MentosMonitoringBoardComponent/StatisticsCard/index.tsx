@@ -1,9 +1,9 @@
-import { ThemeConfig } from '@/config/theme.config';
-import { Card, Flex } from 'antd';
-import { createStyles } from 'antd-use-styles';
-import React, { FC, ReactNode, useMemo } from 'react';
-import PieChart from './PieChart';
 import StatisticSimple, { StatisticSimpleProps } from '@/components/StatisticSimple';
+import { ThemeConfig } from '@/config/theme.config';
+import { Flex } from 'antd';
+import { createStyles } from 'antd-use-styles';
+import { FC, ReactNode, useMemo } from 'react';
+import PieChart from './PieChart';
 
 interface StatisticsCardProps {
   children?: ReactNode;
@@ -79,9 +79,9 @@ const StatisticsCard: FC<StatisticsCardProps> = ({ title, children, statistics }
           }}
         />
       </div>
-      <Flex wrap='wrap' justify="space-between" gap={"small"}>
+      <Flex wrap="wrap" justify="space-between" gap={'small'}>
         {data.map((item, index) => (
-          <StatisticSimple direction='vertical' size="small" key={index} {...item} />
+          <StatisticSimple direction="vertical" size="small" key={index} {...item} />
         ))}
       </Flex>
     </div>

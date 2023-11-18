@@ -1,7 +1,7 @@
 import HighChartComponent from '@/components/HighChartComponent';
 import { ThemeConfig } from '@/config/theme.config';
-import { formatNumber, getPercent } from '@/utils/common';
-import React, { FC, ReactNode } from 'react';
+import { formatNumber } from '@/utils/common';
+import { FC } from 'react';
 
 interface PieChartProps {
   data: {
@@ -18,13 +18,14 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
         chartProps={{
           navigator: {
             enabled: false,
+            height: 0,
           },
           rangeSelector: {
             enabled: false,
           },
           chart: {
             type: 'pie',
-            height: 300,
+            height: 230,
           },
           // title: {
           //   text: 'Countries compared by population density and total area, 2022.',
@@ -60,8 +61,8 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
           },
           series: [
             {
-              innerSize: '65%',
-              size: '100%',
+              innerSize: '70%',
+              size: '110%',
               name: 'Value',
               borderRadius: 5,
 
@@ -71,13 +72,13 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
                     {
                       name: 'Diff',
                       y: data.target - data.actual,
-                      z: 92,
+                      // z: 92,
                       color: ThemeConfig.color.danger,
                     },
                     {
                       name: 'Actual',
                       y: data.actual,
-                      z: 119,
+                      // z: 119,
                       color: ThemeConfig.color.success,
                     },
                   ].map((item) => ({

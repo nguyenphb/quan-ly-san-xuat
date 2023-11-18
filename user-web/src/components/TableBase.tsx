@@ -1,11 +1,8 @@
 import { ThemeConfig } from '@/config/theme.config';
-import { useSearchArrayObjByKey } from '@/hook/useSearchArrayObjByKey';
-import { ActionType, ParamsType, ProTable, ProTableProps } from '@ant-design/pro-components';
-import { Input } from 'antd';
+import { ParamsType, ProTable, ProTableProps } from '@ant-design/pro-components';
 import { createStyles } from 'antd-use-styles';
-import classNames from 'classnames';
 import { cloneDeep, merge } from 'lodash';
-import React, { ReactNode, startTransition, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 interface ProTableCommonProps<
   DataType extends object = object,
@@ -35,18 +32,20 @@ const TableBase = <
   myCustomProps,
   ...props
 }: ProTableCommonProps<DataType, Params, ValueType>) => {
-const styles = useStyles();
+  const styles = useStyles();
 
   const defaultTableProps = useMemo<ProTableProps<DataType, Params, ValueType>>(
     () => ({
-      pagination: {
-        pageSize: 20,
-      },
+      // pagination: {
+      //   pageSize: 20,
+      // },
+      pagination: false,
       className: 'table-striped',
       scroll: { x: 'max-content' },
       bordered: true,
       search: false,
       rootClassName: styles.tableWrapper,
+      size: 'small',
     }),
     [styles],
   );
