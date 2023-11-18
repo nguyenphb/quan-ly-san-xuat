@@ -40,6 +40,12 @@
     icon: 'dashboard',
     component: './MentosMonitoringBoard',
   },
+  {
+    path: '/export-data',
+    name: 'Export Data',
+    icon: 'dashboard',
+    component: './ExportData',
+  },
   { path: '/', redirect: '/tong-quan' },
   { path: '*', component: './404' },
 ];
