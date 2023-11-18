@@ -6,6 +6,8 @@ import { history, Link, RunTimeLayoutConfig } from '@umijs/max';
 import { App, Button, ConfigProvider, Result, Space } from 'antd';
 import dayjs from 'dayjs';
 import 'dayjs/locale/vi';
+import 'dayjs/locale/en';
+
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { getUserInfo } from './services/user';
@@ -14,7 +16,7 @@ const loginPath = '/user/login';
 const resetPass = '/user/update-password';
 const forgotPass = '/user/forgot-password';
 const isDev = process.env.NODE_ENV === 'development';
-dayjs.locale('vi');
+dayjs.locale('en');
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
@@ -120,11 +122,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     ],
     links: isDev
       ? [
-        <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-          <LinkOutlined />
-          <span>OpenAPI</span>
-        </Link>,
-      ]
+          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+            <LinkOutlined />
+            <span>OpenAPI</span>
+          </Link>,
+        ]
       : [],
     menuHeaderRender: undefined,
     // 自定义 403 页面

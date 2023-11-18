@@ -92,3 +92,8 @@ export const sleep = async (time = getRandomInt(100, 500)): Promise<void> => {
     }, time);
   });
 };
+
+export const getPercent = ({ total, current }: { total: number; current: number }) => {
+  if (total === 0) return 0;
+  return (current / total) * 100;
+};
