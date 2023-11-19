@@ -25,7 +25,7 @@
   {
     path: '/export-data',
     name: 'Export Data',
-    icon: 'exp',
+    icon: 'export',
     component: './ExportData',
   },
   { path: '/', redirect: '/product-monitoring-system' },
