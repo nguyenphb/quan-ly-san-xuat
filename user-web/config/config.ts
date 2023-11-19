@@ -99,7 +99,7 @@ export default defineConfig({
    */
   locale: {
     // default zh-CN
-    default: 'vi-VN',
+    default: 'en-US',
     antd: true,
     // default true, when it is true, will use `navigator.language` overwrite default
     baseNavigator: false,

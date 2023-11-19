@@ -27,15 +27,6 @@ export const dataDemoProduct = [
     zone: 'Semi-finished Goods',
     data: [
       {
-        productName: 'Mentos',
-        data: [
-          getData({ label: 'D-line' }),
-          getData({ label: 'H-line' }),
-          getData({ label: 'Coating 2' }),
-          getData({ label: '3pcs/4pcs' }),
-        ],
-      },
-      {
         productName: 'Gum',
         data: [
           getData({ label: 'Coating Gum' }),
@@ -50,14 +41,6 @@ export const dataDemoProduct = [
         ],
       },
       {
-        productName: 'Candy',
-        data: [
-          getData({ label: 'Mixer' }),
-          getData({ label: '2Chew Mono' }),
-          getData({ label: 'Lollipop' }),
-        ],
-      },
-      {
         productName: 'Chupa-Melody',
         data: [
           getData({ label: 'Chupa Line #1' }),
@@ -68,6 +51,23 @@ export const dataDemoProduct = [
           getData({ label: 'BZW 1' }),
           getData({ label: 'BZW 2' }),
           getData({ label: 'Flowpack' }),
+        ],
+      },
+      {
+        productName: 'Mentos',
+        data: [
+          getData({ label: 'D-line' }),
+          getData({ label: 'H-line' }),
+          getData({ label: 'Coating 2' }),
+          getData({ label: '3pcs/4pcs' }),
+        ],
+      },
+      {
+        productName: 'Candy',
+        data: [
+          getData({ label: 'Mixer' }),
+          getData({ label: '2Chew Mono' }),
+          getData({ label: 'Lollipop' }),
         ],
       },
       {

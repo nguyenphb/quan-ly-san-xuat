@@ -43,13 +43,15 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const loading = (
     <span className={`${styles.action} ${styles.account}`}>
-      <Spin
+      {/* <Spin
         size="small"
         style={{
           marginLeft: 8,
           marginRight: 8,
         }}
-      />
+      /> */}
+      <Avatar size="small" className={styles.avatar} icon={<UserOutlined />} />
+      <span className={`${styles.name} anticon`}>{"Demo User"}</span>
     </span>
   );
 

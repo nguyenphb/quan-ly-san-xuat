@@ -3,6 +3,7 @@ import { ParamsType, ProTable, ProTableProps } from '@ant-design/pro-components'
 import { createStyles } from 'antd-use-styles';
 import { cloneDeep, merge } from 'lodash';
 import { useMemo } from 'react';
+import './tableBase.less'
 
 interface ProTableCommonProps<
   DataType extends object = object,
@@ -41,7 +42,7 @@ const TableBase = <
       // },
       pagination: false,
       className: 'table-striped',
-      scroll: { x: 'max-content' },
+      // scroll: { x: 'max-content' },
       bordered: true,
       search: false,
       rootClassName: styles.tableWrapper,

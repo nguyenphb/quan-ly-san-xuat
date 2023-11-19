@@ -18,7 +18,7 @@ const Settings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Trung tâm dữ liệu',
+  title: '',
   pwa: false,
   logo: '/logo.svg',
   iconfontUrl: '',

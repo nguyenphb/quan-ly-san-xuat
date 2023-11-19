@@ -80,7 +80,7 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
             >
               <Row gutter={[16, 16]}>
                 {zone.data.map((item, index) => (
-                  <Col span={24} md={12} lg={8} xl={6} key={index}>
+                  <Col span={24} md={8} lg={8} xl={8} key={index}>
                     <TableBase<DataTable>
                       dataSource={item.data}
                       key="id"
@@ -89,7 +89,7 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
                           title: (
                             <span
                               style={{
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: 'bold',
                               }}
                             >
@@ -119,8 +119,8 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
                             <ValueTag
                               type={
                                 entity.actual &&
-                                entity.hourlyTarget &&
-                                entity?.actual >= entity?.hourlyTarget
+                                  entity.hourlyTarget &&
+                                  entity?.actual >= entity?.hourlyTarget
                                   ? 'success'
                                   : 'danger'
                               }

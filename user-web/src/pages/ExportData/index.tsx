@@ -50,14 +50,14 @@ const ExportData: FC<ExportDataProps> = ({ children }) => {
         <ProFormGroup>
           <ProFormDateTimeRangePicker
             rules={[{ required: true }]}
-            label="Chon thời gian"
+            label="Select time range"
             name="dateRange"
             width={'lg'}
           />
 
           <ProFormSelect
             rules={[{ required: true }]}
-            label="Chọn khu vực"
+            label="Select area"
             onChange={() => {
               // reset when change
               form.setFieldValue('product', undefined);
@@ -75,7 +75,7 @@ const ExportData: FC<ExportDataProps> = ({ children }) => {
                 <ProFormSelect
                   rules={[{ required: true }]}
                   width={'lg'}
-                  label="Chọn Sản phẩm"
+                  label="Select product/line"
                   name="product"
                   options={dataDemoProduct
                     .find((item) => item.zone === zone)
