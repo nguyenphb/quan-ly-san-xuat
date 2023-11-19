@@ -1,11 +1,11 @@
 import { request } from '@umijs/max';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import { generateAPIPath } from './utils';
 
 
 
 export async function getUserInfo(): Promise<{
-  data: API.CurrentUser|undefined;
+  data: API.CurrentUser | undefined;
 }> {
   // return request(generateAPIPath('api/auth/me'), {
   //   method: 'GET',
@@ -17,7 +17,7 @@ export async function getUserInfo(): Promise<{
     const allToken = JSON.parse(localStorage.getItem('token') || '{}');
     const token = allToken?.token;
     if (token) {
-      const decoded = jwtDecode.jwtDecode(token);
+      const decoded = jwtDecode(token);
       return {
         data: decoded as any,
       };

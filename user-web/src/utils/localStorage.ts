@@ -1,4 +1,4 @@
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 export const getAccessToken = () => {
   try {
@@ -11,7 +11,7 @@ export const getAccessToken = () => {
 export const getInfoFromAccessToken = () => {
   try {
     const token = getAccessToken();
-    const info = jwt_decode.jwtDecode(token as string)
+    const info = jwtDecode(token as string)
     // if (info.is_admin) {
     //   info.user_role.push(RoleEnum.CUSTOMER_ADMIN);
     // }

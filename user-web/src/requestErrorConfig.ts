@@ -1,6 +1,6 @@
 ﻿import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import moment from 'moment';
 
 // 错误处理方案： 错误类型
