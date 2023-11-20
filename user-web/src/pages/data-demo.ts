@@ -1,13 +1,12 @@
 import { createEmptyArray } from '@/utils/array';
 import { getRandomInt } from '@/utils/common';
 import { nanoid } from '@ant-design/pro-components';
-type DataTable = {
+export type DataTable = {
   id: string;
   label?: string;
-  totalTarget?: number;
-  hourlyTarget?: number;
-  actual?: number;
-  diff?: number;
+  totalTarget: number;
+  hourlyTarget: number;
+  actual: number;
 };
 const max = 9;
 const getData = ({ label }: { label: string }): DataTable => {
@@ -19,7 +18,6 @@ const getData = ({ label }: { label: string }): DataTable => {
     totalTarget: getRandomInt(1000, 2000),
     hourlyTarget: hourlyTarget,
     actual: actual,
-    diff: actual - hourlyTarget,
   };
 };
 export const dataDemoProduct = [

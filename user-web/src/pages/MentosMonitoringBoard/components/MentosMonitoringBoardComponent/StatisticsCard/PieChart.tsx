@@ -32,7 +32,7 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
           //   align: 'center'
           // },
           subtitle: {
-            text: `<span style="font-size: 25px"> ${formatNumber(present, {
+            text: `<span style="font-size: 25px"> ${formatNumber(present || 0, {
               digits: 2,
             })}%</span>`,
             useHTML: true,
@@ -72,13 +72,13 @@ const PieChart: FC<PieChartProps> = ({ data }) => {
                     {
                       name: 'Diff',
                       y: data.target - data.actual,
-                      // z: 92,
+                      z: 92,
                       color: ThemeConfig.color.danger,
                     },
                     {
                       name: 'Actual',
                       y: data.actual,
-                      // z: 119,
+                      z: 119,
                       color: ThemeConfig.color.success,
                     },
                   ].map((item) => ({

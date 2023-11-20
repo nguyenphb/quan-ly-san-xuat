@@ -15,6 +15,14 @@ const useStyles = createStyles(({ token }) => ({
 const ValueTag: FC<ValueTagProps> = ({ children, type = 'default' }) => {
   const styles = useStyles();
   return (
+    <span
+      className={styles.tagWrapper}
+      style={{
+        color: ThemeConfig.color[type],
+      }}
+    >{children}</span>
+  );
+  return (
     <Tag className={styles.tagWrapper} color={ThemeConfig.color[type]}>
       {children}
     </Tag>

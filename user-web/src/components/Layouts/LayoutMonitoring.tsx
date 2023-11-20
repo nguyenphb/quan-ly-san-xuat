@@ -1,5 +1,5 @@
 import { ThemeConfig } from '@/config/theme.config';
-import { Flex } from 'antd';
+import { Flex, Spin } from 'antd';
 import { createStyles } from 'antd-use-styles';
 import { FC, ReactNode } from 'react';
 import StatisticSimple, { StatisticSimpleProps } from '../StatisticSimple';
@@ -9,6 +9,7 @@ interface LayoutMonitoringProps {
   subTitle?: ReactNode[];
   statistics?: StatisticSimpleProps[];
   children?: ReactNode;
+  loading?: boolean;
 }
 const useStyles = createStyles(({ token }) => ({
   headerTitle: {
@@ -33,11 +34,17 @@ const useStyles = createStyles(({ token }) => ({
     marginBlockEnd: token.margin,
   },
 }));
-const LayoutMonitoring: FC<LayoutMonitoringProps> = ({ title, subTitle, statistics, children }) => {
+const LayoutMonitoring: FC<LayoutMonitoringProps> = ({
+  title,
+  subTitle,
+  statistics,
+  children,
+  loading = false,
+}) => {
   const styles = useStyles();
 
   return (
-    <>
+    <Spin spinning={loading}>
       <div className={styles.headerTitle}>{title}</div>
       <div className={styles.timeInfoWrapper}>
         {subTitle?.map((item, index) => <span key={index}>{item}</span>)}
@@ -46,7 +53,7 @@ const LayoutMonitoring: FC<LayoutMonitoringProps> = ({ title, subTitle, statisti
         {statistics?.map((item, index) => <StatisticSimple key={index} {...item} />)}
       </Flex>
       {children}
-    </>
+    </Spin>
   );
 };
 

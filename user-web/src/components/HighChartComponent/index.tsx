@@ -1,13 +1,12 @@
 import { formatNumberSummary } from '@/utils/format';
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
-import Highcharts,{ Chart } from 'highcharts';
+import Highcharts, { Chart } from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import HighchartsMore from "highcharts/highcharts-more";
-import { cloneDeep,merge } from 'lodash';
-import { FC,useEffect,useMemo,useRef,useState } from 'react';
+import HighchartsMore from 'highcharts/highcharts-more';
+import { cloneDeep, merge } from 'lodash';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import './index.less';
-
 
 require('highcharts/modules/accessibility')(Highcharts);
 require('highcharts/modules/exporting')(Highcharts);
@@ -48,6 +47,9 @@ const defaultChartProps: Highcharts.Options = {
       ],
     },
   },
+  tooltip: {
+    shared: false, //https://github.com/highcharts/highcharts/issues/12287
+  },
   chart: {
     // events: {
     //   render: function () {
@@ -62,9 +64,9 @@ const defaultChartProps: Highcharts.Options = {
   //   labels: {
   //     autoRotation: undefined,
   //   },
-    scrollbar: {
-      liveRedraw: false, // Tắt vẽ lại liên tục để tối ưu hóa hiệu suất
-    },
+  scrollbar: {
+    liveRedraw: false, // Tắt vẽ lại liên tục để tối ưu hóa hiệu suất
+  },
   //   events: {
   //     afterSetExtremes: function (e) {
   //       (this.chart?.scrollingContainer as HTMLDivElement)?.scrollTo({

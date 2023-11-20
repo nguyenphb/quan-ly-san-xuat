@@ -67,6 +67,7 @@
     "@types/numeral": "^2.0.5",
     "@umijs/plugin-model": "^2.6.2",
     "@umijs/route-utils": "^4.0.1",
+    "ahooks": "^3.7.8",
     "antd": "^5.11.1",
     "antd-img-crop": "^4.17.0",
     "antd-use-styles": "^1.1.4",
