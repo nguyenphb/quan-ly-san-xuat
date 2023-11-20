@@ -154,8 +154,8 @@ export const useProductMonitorData = () => {
   return useMemo(
     () => ({
       data,
-      totalActual,
-      totalTarget,
+      totalActual: formatNumberOrString(totalActual, { default: totalActual }) as number,
+      totalTarget: formatNumberOrString(totalTarget, { default: totalTarget }) as number,
       totalDiff: formatNumberOrString(totalActual - totalTarget, {
         default: 0,
       }) as number,
