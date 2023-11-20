@@ -154,10 +154,11 @@ export const useProductMonitorData = () => {
   return useMemo(
     () => ({
       data,
-      totalActual: formatNumberOrString(totalActual, { default: totalActual }) as number,
-      totalTarget: formatNumberOrString(totalTarget, { default: totalTarget }) as number,
+      totalActual: formatNumberOrString(totalActual, { default: totalActual, digits: 2 }) as number,
+      totalTarget: formatNumberOrString(totalTarget, { default: totalTarget, digits: 2 }) as number,
       totalDiff: formatNumberOrString(totalActual - totalTarget, {
-        default: 0,
+        default: totalActual - totalTarget,
+        digits: 2,
       }) as number,
       loading,
     }),
