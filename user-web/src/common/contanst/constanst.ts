@@ -1,5 +1,5 @@
 export const DEFAULT_PAGE_SIZE_ALL = 10000;
-export const DEFAULT_DATE_FORMAT = 'DD-MM-YYYY'
+export const DEFAULT_DATE_FORMAT = 'DD-MM-YYYY';
 export const DOCTYPE_ERP = {
   iotPest: 'iot_pest',
   iotFarmingPlan: 'iot_farming_plan',
@@ -14,3 +14,5 @@ export const DOCTYPE_ERP = {
   iotCustomerUser: 'iot_customer_user',
   iotEmployeeInCrop: 'iot_employee_in_crop',
 };
+export const WSS_URL_DEV = 'wss://iot-user.meigroupiot.com/mqtt';
+export const WSS_URL_PROD = 'wss://iot-user.meigroupiot.com/mqtt';

@@ -11,6 +11,8 @@ import { StatisticSimpleProps } from '../../../../components/StatisticSimple';
 import ValueTag from '../../../../components/ValueTag';
 import ModalChart from './ModalChart';
 import Setting from './Setting';
+import { useProductMonitorData } from './hooks/useProductMonitorData';
+import { formatNumberOrString } from '@/utils/format';
 
 interface ProductMonitorSystemComponentProps {
   children?: ReactNode;
@@ -19,60 +21,7 @@ interface ProductMonitorSystemComponentProps {
 const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({ children }) => {
   const time = dayjs();
 
-  const [data, setData] = useState(dataDemoProduct);
-  const { loading } = useRequest(
-    async () => {
-      return {
-        data: dataDemoProduct,
-      };
-    },
-    {
-      onSuccess(data) {
-        setData(data);
-      },
-    },
-  );
-
-  useInterval(() => {
-    setData((prev) =>
-      prev.map((zone) => ({
-        ...zone,
-        data: zone.data.map((zoneItem) => ({
-          ...zoneItem,
-          data: zoneItem.data.map((product) => ({
-            ...product,
-            actual: product.actual + 1,
-          })),
-        })),
-      })),
-    );
-  }, 1000 * 30); // 30 seconds
-  const target = useMemo(
-    () =>
-      data.reduce((prev, zone) => {
-        let res = prev;
-        zone.data.forEach((zoneItem) =>
-          zoneItem.data.forEach((product) => {
-            res = res + product.hourlyTarget;
-          }),
-        );
-        return res;
-      }, 0),
-    [data],
-  );
-  const actual = useMemo(
-    () =>
-      data.reduce((prev, zone) => {
-        let res = prev;
-        zone.data.forEach((zoneItem) =>
-          zoneItem.data.forEach((product) => {
-            res = res + product.actual;
-          }),
-        );
-        return res;
-      }, 0),
-    [data],
-  );
+  const { totalActual, totalTarget, totalDiff, data, loading } = useProductMonitorData();
   const statistics: StatisticSimpleProps[] = useMemo(
     () => [
       {
@@ -80,7 +29,7 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
           text: 'Target',
         },
         value: {
-          text: target,
+          text: totalTarget,
         },
       },
       {
@@ -88,8 +37,8 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
           text: 'Actual',
         },
         value: {
-          text: actual,
-          color: actual >= target ? 'success' : 'danger',
+          text: totalActual,
+          color: totalDiff >= 0 ? 'success' : 'danger',
         },
       },
       {
@@ -97,12 +46,12 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
           text: 'Diff',
         },
         value: {
-          text: actual - target,
-          color: actual - target >= 0 ? 'success' : 'danger',
+          text: totalDiff,
+          color: totalDiff >= 0 ? 'success' : 'danger',
         },
       },
     ],
-    [target, actual],
+    [totalTarget, totalActual],
   );
   return (
     <>
@@ -184,7 +133,10 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
                           width: 50,
 
                           render: (dom, entity) => {
-                            const diff = entity.actual - entity.hourlyTarget;
+                            const diff = formatNumberOrString(entity.actual - entity.hourlyTarget, {
+                              default: 0,
+                              digits: 2,
+                            }) as number;
                             return (
                               <ValueTag type={diff >= 0 ? 'success' : 'danger'}>{diff}</ValueTag>
                             );
