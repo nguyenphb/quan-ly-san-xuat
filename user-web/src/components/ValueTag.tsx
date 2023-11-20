@@ -9,7 +9,7 @@ interface ValueTagProps {
 }
 const useStyles = createStyles(({ token }) => ({
   tagWrapper: {
-    fontWeight: token.fontWeightStrong,
+    fontWeight: token.fontWeightStrong + 100,
   },
 }));
 const ValueTag: FC<ValueTagProps> = ({ children, type = 'default' }) => {
@@ -20,7 +20,9 @@ const ValueTag: FC<ValueTagProps> = ({ children, type = 'default' }) => {
       style={{
         color: ThemeConfig.color[type],
       }}
-    >{children}</span>
+    >
+      {children}
+    </span>
   );
   return (
     <Tag className={styles.tagWrapper} color={ThemeConfig.color[type]}>
