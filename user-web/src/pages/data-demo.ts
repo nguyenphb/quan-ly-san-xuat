@@ -9,7 +9,7 @@ export type DataTable = {
   actual: number;
 };
 const max = 9;
-const getData = ({ label }: { label: string }): DataTable => {
+const getData = ({ label, isZero }: { label: string, isZero?: boolean }): DataTable => {
   const hourlyTarget = getRandomInt(100, 200);
   const actual = getRandomInt(100, 200);
   return {
@@ -17,7 +17,7 @@ const getData = ({ label }: { label: string }): DataTable => {
     label: label,
     totalTarget: getRandomInt(1000, 2000),
     hourlyTarget: hourlyTarget,
-    actual: actual,
+    actual: isZero ? 0 : actual,
   };
 };
 export const dataDemoProduct = [
@@ -27,8 +27,8 @@ export const dataDemoProduct = [
       {
         productName: 'Gum',
         data: [
-          getData({ label: 'Coating Gum' }),
-          getData({ label: 'Lamination' }),
+          getData({ label: 'Coating Gum', isZero: true }),
+          getData({ label: 'Lamination', isZero: true }),
           getData({ label: 'Executive 1' }),
           getData({ label: 'Executive 2' }),
           getData({ label: 'Exorcisms BB' }),
