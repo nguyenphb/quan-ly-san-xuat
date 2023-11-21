@@ -23,11 +23,18 @@
     component: './ProductMonitorSystem',
   },
   {
+    path: '/calendar',
+    name: 'Calendar',
+    icon: 'export',
+    component: './Calendar',
+  },
+  {
     path: '/export-data',
     name: 'Export Data',
     icon: 'export',
     component: './ExportData',
   },
+
   { path: '/', redirect: '/product-monitoring-system' },
   { path: '*', component: './404' },
 ];
