@@ -1,10 +1,10 @@
 import { ReloadOutlined } from '@ant-design/icons';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import {
-CalendarOptions,
-EventClickArg,
-EventSourceFunc,
-EventSourceInput
+  CalendarOptions,
+  EventClickArg,
+  EventSourceFunc,
+  EventSourceInput
 } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -12,9 +12,9 @@ import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { getLocale,useModel } from '@umijs/max';
-import { Button,Card,CardProps,notification,Spin,theme } from 'antd';
-import React,{ memo,useCallback,useMemo,useRef,useState } from 'react';
+import { getLocale, useModel } from '@umijs/max';
+import { Button, Card, CardProps, notification, Spin, theme } from 'antd';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { mergeRefs } from 'react-merge-refs';
 import './index.scss';
 
@@ -148,14 +148,14 @@ const CalendarPlansComponent = React.forwardRef<CalendarRef, CalendarComponentPr
               headerToolbar={headerToolbar}
               initialView="timeGridWeek"
               buttonText={{
-                today: 'Hôm nay',
+                today: 'Today',
               }}
               views={{
-                multiMonthYear: { buttonText: 'Năm' },
-                dayGridMonth: { buttonText: 'Tháng' },
-                timeGridWeek: { buttonText: 'Tuần' },
-                timeGridDay: { buttonText: 'Ngày' },
-                list: { buttonText: 'Danh sách' },
+                multiMonthYear: { buttonText: 'Year' },
+                dayGridMonth: { buttonText: 'Month' },
+                timeGridWeek: { buttonText: 'Week' },
+                timeGridDay: { buttonText: 'Day' },
+                list: { buttonText: 'List' },
               }}
               // editable={true}
               selectable={true}
