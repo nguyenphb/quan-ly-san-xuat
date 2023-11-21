@@ -1,8 +1,6 @@
 import { request } from '@umijs/max';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import { generateAPIPath } from './utils';
-
-
 
 export async function getUserInfo(): Promise<{
   data: API.CurrentUser | undefined;
@@ -23,11 +21,14 @@ export async function getUserInfo(): Promise<{
       };
     }
   } catch (error) {
-    console.log('error: ', error);
+    throw new Error(error?.message)
+    // console.log('error: ', error);
+    // return undefined
+    // return { data: undefined };
   }
-  return {
-    data: {},
-  };
+  // return {
+  //   data: {},
+  // };
 }
 
 export async function toogleUserStatus() {
