@@ -29,6 +29,12 @@
     component: './Calendar',
   },
   {
+    path: '/employees',
+    name: 'Employees Management',
+    icon: 'user',
+    component: './EmployeeManagement',
+  },
+  {
     path: '/export-data',
     name: 'Export Data',
     icon: 'export',

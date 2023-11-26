@@ -4,7 +4,7 @@ import TableBase from '@/components/TableBase';
 import { DataTable, dataDemoProduct } from '@/pages/data-demo';
 import { useRequest } from '@umijs/max';
 import { useInterval } from 'ahooks';
-import { Col, Divider, Row, Space } from 'antd';
+import { Col, Divider, Flex, Row, Space } from 'antd';
 import dayjs from 'dayjs';
 import { FC, ReactNode, useMemo, useState } from 'react';
 import { StatisticSimpleProps } from '../../../../components/StatisticSimple';
@@ -13,11 +13,34 @@ import ModalChart from './ModalChart';
 import Setting from './Setting';
 import { useProductMonitorData } from './hooks/useProductMonitorData';
 import { formatNumberOrString } from '@/utils/format';
+import { createStyles } from 'antd-use-styles';
+import TableProduct from './TableProduct';
 
 interface ProductMonitorSystemComponentProps {
   children?: ReactNode;
 }
 
+const useStyles = createStyles(({ token }) => ({
+  wrapper: {
+    backgroundColor: token.colorBgBase,
+    padding: token.padding,
+  },
+  header: {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%',
+    // gap: token.padding,
+    gap: 16,
+  },
+  title: {
+    fontSize: token.fontSizeHeading4,
+    fontWeight: token.fontWeightStrong,
+  },
+  rowProduct: {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%',
+    gap: token.padding,
+  },
+}));
 const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({ children }) => {
   const time = dayjs();
 
@@ -53,6 +76,12 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
     ],
     [totalTarget, totalActual],
   );
+  const styles = useStyles();
+  const findFinishedGoodsByProductName = (productName: string) => {
+    return data
+      .find((item) => item.zone === data[1].zone)
+      ?.data?.find((item) => item.productName === productName);
+  };
   return (
     <>
       <LayoutMonitoring
@@ -65,7 +94,34 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
         ]}
         statistics={statistics}
       >
-        <>
+        <div className={styles.wrapper}>
+          <div className={styles.header}>
+            {data?.map((item) => (
+              <div key={item.zone} className={styles.title}>
+                {item.zone}
+              </div>
+            ))}
+          </div>
+          <Divider />
+          <Row gutter={[16, 16]}>
+            {data[0].data.map((item) => (
+              <Col span={24} key={item.productName}>
+                <Row gutter={[16, 16]}>
+                  <Col span={12}>
+                    <TableProduct productName={item.productName} dataSource={item.data} />
+                  </Col>
+                  <Col span={12}>
+                    <TableProduct
+                      productName={item.productName}
+                      dataSource={findFinishedGoodsByProductName(item.productName)?.data}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            ))}
+          </Row>
+        </div>
+        {/* <div>
           {data?.map((zone, index) => (
             <ProCardCommon
               style={{
@@ -168,7 +224,7 @@ const ProductMonitorSystemComponent: FC<ProductMonitorSystemComponentProps> = ({
           ))}
 
           <Divider />
-        </>
+        </div> */}
       </LayoutMonitoring>
     </>
   );
