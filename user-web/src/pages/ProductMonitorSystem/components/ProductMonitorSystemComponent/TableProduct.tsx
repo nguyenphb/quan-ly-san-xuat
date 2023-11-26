@@ -17,7 +17,7 @@ const TableProduct: FC<TableProductProps> = ({ children, productName, dataSource
   return (
     <TableBase<DataTable>
       dataSource={dataSource}
-      key="id"
+      rowKey="id"
       columns={[
         {
           title: (

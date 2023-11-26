@@ -4,7 +4,46 @@ import { useModel, useRequest } from '@umijs/max';
 import { useInterval } from 'ahooks';
 import mqtt from 'mqtt/*';
 import { useEffect, useMemo, useState } from 'react';
-
+// default Device Map
+const deviceIdMap = [
+  {
+    name: 'Coating Gum',
+    id: '7ae3e672-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Lamination',
+    id: '7ae3e671-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Executive 1',
+    id: '7ae45ba0-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Executive 2',
+    id: '7ae3e670-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: '3D',
+    id: '7aef0a00-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Bosch Bipack 1 & 2',
+    id: '7b118620-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Auto Bottle line 1',
+    id: '7af4d660-8c37-11ee-aa64-35945e245523',
+  },
+  {
+    name: 'Auto Bottle line 2',
+    id: '7af9df70-8c37-11ee-aa64-35945e245523',
+  },
+];
+const findDeviceById = (deviceId?: null | string) => {
+  return deviceIdMap.find((item) => item.id === deviceId);
+};
+const deviceNames = deviceIdMap.map((item) => item.name);
+//
 const getDeviceIdFromTopic = (topic: string): string | null => {
   try {
     const pattern = /meigroup\/things\/v2\/([^/]+)\/telemetry/;
@@ -47,9 +86,9 @@ export const useProductMonitorData = () => {
             ...product,
             actual: (() => {
               if (
-                zone.zone === 'Semi-finished Goods' &&
+                // zone.zone === 'Semi-finished Goods' &&
                 zoneItem.productName === 'Gum' &&
-                ['Coating Gum', 'Lamination'].includes(product.label || '')
+                deviceNames.includes(product.label || '')
               ) {
                 // chỗ này để realtime
                 return product.actual;
@@ -94,12 +133,8 @@ export const useProductMonitorData = () => {
   const { mqttClient } = useModel('MQTTNotification');
   const handleOnMessage: mqtt.OnMessageCallback = (topic, msg) => {
     try {
-      const deviceIdMap = {
-        '8d472440-874f-11ee-b281-07dc49710156': 'Coating Gum',
-        '32375800-8708-11ee-b281-07dc49710156': 'Lamination',
-      };
       const deviceId = getDeviceIdFromTopic(topic);
-      const deviceName = deviceIdMap?.[deviceId as keyof typeof deviceIdMap];
+      const deviceName = findDeviceById(deviceId)?.name;
       type DataType = { ts: string; key: string; value: number };
       const data: DataType[] = JSON.parse(msg.toString());
       const dataReceive = {
@@ -107,6 +142,7 @@ export const useProductMonitorData = () => {
         deviceName,
         data: data.find((item) => item.key === 'counter'),
       };
+
       if (dataReceive.data && dataReceive.deviceId && dataReceive.deviceName) {
         setData((prev) =>
           prev.map((zone) => ({
@@ -117,9 +153,9 @@ export const useProductMonitorData = () => {
                 ...product,
                 actual: (() => {
                   if (
-                    zone.zone === 'Semi-finished Goods' &&
+                    // zone.zone === 'Semi-finished Goods' &&
                     zoneItem.productName === 'Gum' &&
-                    ['Coating Gum', 'Lamination'].includes(product.label || '')
+                    deviceNames.includes(product.label || '')
                   ) {
                     // chỗ này để realtime
                     if (product.label === dataReceive.deviceName) {

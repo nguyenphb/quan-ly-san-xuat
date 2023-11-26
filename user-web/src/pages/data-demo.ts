@@ -29,8 +29,8 @@ export const dataDemoProduct = [
         data: [
           getData({ label: 'Coating Gum', isZero: true }),
           getData({ label: 'Lamination', isZero: true }),
-          getData({ label: 'Executive 1' }),
-          getData({ label: 'Executive 2' }),
+          getData({ label: 'Executive 1', isZero: true }),
+          getData({ label: 'Executive 2', isZero: true }),
           getData({ label: 'Exorcisms BB' }),
           getData({ label: 'Bosch Splosh' }),
           getData({ label: 'Schib Mono 9' }),
@@ -97,10 +97,10 @@ export const dataDemoProduct = [
       {
         productName: 'Gum',
         data: [
-          getData({ label: '3D' }),
-          getData({ label: 'Bosch Bipack 1 & 2' }),
-          getData({ label: 'Auto Bottle line 1' }),
-          getData({ label: 'Auto Bottle line 2' }),
+          getData({ label: '3D', isZero: true }),
+          getData({ label: 'Bosch Bipack 1 & 2', isZero: true }),
+          getData({ label: 'Auto Bottle line 1', isZero: true }),
+          getData({ label: 'Auto Bottle line 2', isZero: true }),
 
           getData({ label: 'Blister 1' }),
           getData({ label: 'Blister 2' }),
